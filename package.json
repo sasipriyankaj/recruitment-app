@@ -1,0 +1,18 @@
+{
+  "name": "campus-recruitment-system",
+  "version": "2.1.0",
+  "description": "The recruiting software built with React/Redux (Client), Node/Express (API), and MongoDB (Database).",
+  "scripts": {
+    "install": "cd server && npm i && cd ../client && npm i",
+    "server": "cd server && npm start",
+    "client": "cd client && npm start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "mongoose": "^6.10.0"
+  }
+}

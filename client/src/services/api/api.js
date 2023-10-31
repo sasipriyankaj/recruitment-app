@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class API {
   constructor() {
-    axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.baseURL = 'https://recruitment-app-api.onrender.com/';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
 

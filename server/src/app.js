@@ -11,10 +11,18 @@ const studentsRouter = require('./routes/api/students');
 const jobsRouter = require('./routes/api/jobs');
 const profileRouter = require('./routes/api/profile');
 
+const mongoose = require('mongoose');
+
 mongoose
-  .connect('mongodb://0.0.0.0:27017/test', {useNewUrlParser: true})
-  .catch((e) => {
-    console.log(e);
+  .connect('mongodb+srv://sasi15july2002:sasi15july2002@cluster0.llyoprf.mongodb.net/project?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Failed to connect to MongoDB:', error);
   });
   
 const app = express();

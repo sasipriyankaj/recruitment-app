@@ -11,7 +11,7 @@ const studentsRouter = require('./routes/api/students');
 const jobsRouter = require('./routes/api/jobs');
 const profileRouter = require('./routes/api/profile');
 
-const mongoose = require('mongoose');
+
 
 mongoose
   .connect('mongodb+srv://sasi15july2002:sasi15july2002@cluster0.llyoprf.mongodb.net/project?retryWrites=true&w=majority', {

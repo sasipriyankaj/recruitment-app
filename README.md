@@ -3,7 +3,7 @@
 Campus Recruitment System is a recruiting software built with the following technologies:
 
 - [React](https://reactjs.org)/[Redux](https://redux.js.org) (Client)
-- [Node](https://nodejs.org)/[Express](https://expressjs.com) (API)
+- [Node](https://nodejs.org)/[Express](https://expressjs.com) (Server)
 - [MongoDB](https://www.mongodb.com) (Database)
 
 ## Getting Started

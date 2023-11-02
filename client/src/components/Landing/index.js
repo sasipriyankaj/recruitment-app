@@ -21,6 +21,9 @@ const Landing = () => {
         </div>
       </div>
     </Container>
+<style>
+  backgroud:url("https://img.freepik.com/free-vector/modern-desktop-background-geometric-blue-design-vector_53876-135923.jpg?w=1060&t=st=1698946865~exp=1698947465~hmac=7fdbea5e88f91c596b60ed95d250372fcadd0bd9b197d5149c0507f0ff0555b7");
+  </style>
   );
 };
 

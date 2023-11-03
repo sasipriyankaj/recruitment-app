@@ -15,13 +15,12 @@ const Edit = ({
   address,
   coverLetter,
   gender,
-  resume, // Add resume
   handleChange,
   handleSubmit,
-  handleResumeUpload, // Add handleResumeUpload function
   isProcessing,
   error,
   dismissAlert,
+  handleResumeUpload, // Add handleResumeUpload function
 }) => {
   const navigate = useNavigate();
 
@@ -32,37 +31,92 @@ const Edit = ({
           Edit Profile
         </Card.Header>
         <Card.Body>
-          <Alert
-            variant="danger"
-            show={error}
-            dismissible
-            onClose={dismissAlert}
-          >
+          <Alert variant="danger" show={error} dismissible onClose={dismissAlert}>
             {error}
           </Alert>
-          <Form.Group controlId="resume" className="mb-3">
-          <Form.Label>Resume</Form.Label>
-          <Form.Control
-        type="file"
-      name="resume"
-            onChange={handleResumeUpload}
-      disabled={isProcessing}
-    />
-          </Form.Group>
-
-            <Button
-              className="me-2"
-              variant="success"
-              type="submit"
-              disabled={isProcessing}
-            >
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="firstName" className="mb-3">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="firstName"
+                value={firstName}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
+            </Form.Group>
+            <Form.Group controlId="lastName" className="mb-3">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="lastName"
+                value={lastName}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
+            </Form.Group>
+            <Form.Group controlId="email" className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                required
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
+            </Form.Group>
+            <Form.Group controlId="address" className="mb-3">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                name="address"
+                value={address}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
+            </Form.Group>
+            <Form.Group controlId="coverLetter" className="mb-3">
+              <Form.Label>Cover Letter</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={4}
+                name="coverLetter"
+                value={coverLetter}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
+            </Form.Group>
+            <Form.Group controlId="gender" className="mb-3">
+              <Form.Label>Gender</Form.Label>
+              <Form.Control
+                as="select"
+                name="gender"
+                value={gender}
+                onChange={handleChange}
+                disabled={isProcessing}
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="resume" className="mb-3">
+              <Form.Label>Resume</Form.Label>
+              <Form.Control
+                type="file"
+                name="resume"
+                onChange={handleResumeUpload} // Handle resume file upload
+                disabled={isProcessing}
+              />
+            </Form.Group>
+            <Button className="me-2" variant="success" type="submit" disabled={isProcessing}>
               {isProcessing ? 'Updating...' : 'Update'}
             </Button>
-            <Button
-              variant="light"
-              onClick={() => navigate(ROUTES.PROFILE)}
-              disabled={isProcessing}
-            >
+            <Button variant="light" onClick={() => navigate(ROUTES.PROFILE)} disabled={isProcessing}>
               Cancel
             </Button>
           </Form>
@@ -79,30 +133,12 @@ Edit.propTypes = {
   address: PropTypes.string.isRequired,
   coverLetter: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
-  resume: PropTypes.object, // Update the prop type for resume
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  handleResumeUpload: PropTypes.func.isRequired, // Add the prop type for resume upload
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
   dismissAlert: PropTypes.func.isRequired,
+  handleResumeUpload: PropTypes.func.isRequired, // Add the prop type for resume upload
 };
 
 export default Edit;
-import React, { useState } from 'react';
-
-// Inside your component or a parent component
-const [resumeFile, setResumeFile] = useState(null);
-
-const handleResumeUpload = (e) => {
-  const selectedFile = e.target.files[0];
-  setResumeFile(selectedFile);
-};
-
-// Pass `handleResumeUpload` and `resumeFile` to the `Profile` component as props
-<Profile
-  // Other props...
-  resume={resumeFile}
-  handleResumeUpload={handleResumeUpload}
-  // Other props...
-/>

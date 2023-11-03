@@ -11,16 +11,15 @@ import * as ROUTES from '../../../../constants/routes';
 const Edit = ({
   firstName,
   lastName,
-  email,
-  address,
-  coverLetter,
-  gender,
+  email, // Add email
+  address, // Add address
+  coverLetter, // Add cover letter
+  gender, // Add gender
   handleChange,
   handleSubmit,
   isProcessing,
   error,
   dismissAlert,
-  handleResumeUpload, // Add handleResumeUpload function
 }) => {
   const navigate = useNavigate();
 
@@ -31,7 +30,12 @@ const Edit = ({
           Edit Profile
         </Card.Header>
         <Card.Body>
-          <Alert variant="danger" show={error} dismissible onClose={dismissAlert}>
+          <Alert
+            variant="danger"
+            show={error}
+            dismissible
+            onClose={dismissAlert}
+          >
             {error}
           </Alert>
           <Form onSubmit={handleSubmit}>
@@ -104,19 +108,19 @@ const Edit = ({
                 <option value="other">Other</option>
               </Form.Control>
             </Form.Group>
-            <Form.Group controlId="resume" className="mb-3">
-              <Form.Label>Resume</Form.Label>
-              <Form.Control
-                type="file"
-                name="resume"
-                onChange={handleResumeUpload} // Handle resume file upload
-                disabled={isProcessing}
-              />
-            </Form.Group>
-            <Button className="me-2" variant="success" type="submit" disabled={isProcessing}>
+            <Button
+              className="me-2"
+              variant="success"
+              type="submit"
+              disabled={isProcessing}
+            >
               {isProcessing ? 'Updating...' : 'Update'}
             </Button>
-            <Button variant="light" onClick={() => navigate(ROUTES.PROFILE)} disabled={isProcessing}>
+            <Button
+              variant="light"
+              onClick={() => navigate(ROUTES.PROFILE)}
+              disabled={isProcessing}
+            >
               Cancel
             </Button>
           </Form>
@@ -138,7 +142,6 @@ Edit.propTypes = {
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
   dismissAlert: PropTypes.func.isRequired,
-  handleResumeUpload: PropTypes.func.isRequired, // Add the prop type for resume upload
 };
 
 export default Edit;

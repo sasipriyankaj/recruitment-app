@@ -31,7 +31,7 @@ const Profile = ({
               <Form.Label>First Name</Form.Label>
               <Form.Control readOnly type="text" name="firstName" value={firstName} />
             </Form.Group>
-            <Form.Group controlId="lastName" className "mb-3">
+            <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
               <Form.Control readOnly type="text" name="lastName" value={lastName} />
             </Form.Group>

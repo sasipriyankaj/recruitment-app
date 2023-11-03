@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 
 const { STUDENT } = require('../constants/roles');
@@ -33,15 +34,11 @@ const StudentSchema = mongoose.Schema({
   },
   coverLetter: {
     type: String,
-    default: '',
+    default: '', // Add coverLetter field
   },
   gender: {
     type: String,
-    default: '',
-  },
-  resume: {
-    type: String, // You can use String to store the file path or Buffer to store the content
-    default: '', // Set a default value as needed
+    default: '', // Add gender field
   },
   createdAt: {
     type: Date,

@@ -40,18 +40,15 @@ const Edit = ({
           >
             {error}
           </Alert>
-          <Form onSubmit={handleSubmit}>
-            {/* Other form fields... */}
-            {/* Add a file input for resume upload */}
-            <Form.Group controlId="resume" className="mb-3">
-              <Form.Label>Resume</Form.Label>
-              <Form.Control
-                type="file"
-                name="resume"
-                onChange={handleResumeUpload}
-                disabled={isProcessing}
-              />
-            </Form.Group>
+          <Form.Group controlId="resume" className="mb-3">
+          <Form.Label>Resume</Form.Label>
+          <Form.Control
+        type="file"
+      name="resume"
+            onChange={handleResumeUpload}
+      disabled={isProcessing}
+    />
+          </Form.Group>
 
             <Button
               className="me-2"
@@ -92,3 +89,20 @@ Edit.propTypes = {
 };
 
 export default Edit;
+import React, { useState } from 'react';
+
+// Inside your component or a parent component
+const [resumeFile, setResumeFile] = useState(null);
+
+const handleResumeUpload = (e) => {
+  const selectedFile = e.target.files[0];
+  setResumeFile(selectedFile);
+};
+
+// Pass `handleResumeUpload` and `resumeFile` to the `Profile` component as props
+<Profile
+  // Other props...
+  resume={resumeFile}
+  handleResumeUpload={handleResumeUpload}
+  // Other props...
+/>

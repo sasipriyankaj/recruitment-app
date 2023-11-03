@@ -12,17 +12,22 @@ import NotFound from '../../../components/NotFound/Lazy';
 class CompanyContainer extends Component {
   render() {
     const backgroundImageUrl =
-      'https://static.vecteezy.com/system/resources/previews/005/367/549/non_2x/illustration-of-resume-paper-with-magnifying-glass-suitable-for-design-element-of-job-vacancy-poster-recruitment-agency-website-background-and-resume-builder-service-vector.jpg';
+      'https://img.freepik.com/free-vector/recruitment-agency-searching-job-applicants_1262-19873.jpg?w=996&t=st=1698990045~exp=1698990645~hmac=8d3ffe62f92f26a83029bdbd9609665c2f4e87a79f925f38316b2fa4804d8706';
 
-    const companyStyle = {
+    const bodyStyle = {
       backgroundImage: `url(${backgroundImageUrl})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',
+      height: '100vh',
+      margin: 0,
+      padding: 0,
+      display: 'flex',
+      flexDirection: 'column',
     };
 
     return (
-      <div style={companyStyle}>
+      <body style={bodyStyle}>
         <Routes>
           <Route index element={<Company />} />
           <Route path="students" element={<StudentsContainer />} />
@@ -32,7 +37,7 @@ class CompanyContainer extends Component {
           <Route path="profile/edit" element={<EditContainer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
+      </body>
     );
   }
 }

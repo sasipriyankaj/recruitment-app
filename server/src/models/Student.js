@@ -33,11 +33,15 @@ const StudentSchema = mongoose.Schema({
   },
   coverLetter: {
     type: String,
-    default: '', // Add coverLetter field
+    default: '',
   },
   gender: {
     type: String,
-    default: '', // Add gender field
+    default: '',
+  },
+  resume: {
+    type: String, // You can use String to store the file path or Buffer to store the content
+    default: '', // Set a default value as needed
   },
   createdAt: {
     type: Date,

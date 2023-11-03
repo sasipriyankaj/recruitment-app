@@ -2,20 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../../../constants/routes';
 
-const Profile = ({
+const Edit = ({
   firstName,
   lastName,
   email,
   address,
-  phone,
   coverLetter,
   gender,
-  resume, // Add resume
+  handleChange,
+  handleSubmit,
+  isProcessing,
+  error,
+  dismissAlert,
+  handleResumeUpload,
 }) => {
   const navigate = useNavigate();
 
@@ -23,48 +28,96 @@ const Profile = ({
     <Container className="col-md-4">
       <Card className="shadow-sm">
         <Card.Header as="h2" className="text-center">
-          Profile
+          Edit Profile
         </Card.Header>
         <Card.Body>
-          <Form>
+          <Alert variant="danger" show={error} dismissible onClose={dismissAlert}>
+            {error}
+          </Alert>
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="firstName" className="mb-3">
               <Form.Label>First Name</Form.Label>
-              <Form.Control readOnly type="text" name="firstName" value={firstName} />
+              <Form.Control
+                required
+                type="text"
+                name="firstName"
+                value={firstName}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
             </Form.Group>
             <Form.Group controlId="lastName" className="mb-3">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control readOnly type="text" name="lastName" value={lastName} />
+              <Form.Control
+                required
+                type="text"
+                name="lastName"
+                value={lastName}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
             </Form.Group>
             <Form.Group controlId="email" className="mb-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control readOnly type="text" name="email" value={email} />
+              <Form.Control
+                required
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
             </Form.Group>
             <Form.Group controlId="address" className="mb-3">
               <Form.Label>Address</Form.Label>
-              <Form.Control readOnly type="text" name="address" value={address} />
-            </Form.Group>
-            <Form.Group controlId="phone" className="mb-3">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control readOnly type="text" name="phone" value={phone} />
+              <Form.Control
+                required
+                type="text"
+                name="address"
+                value={address}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
             </Form.Group>
             <Form.Group controlId="coverLetter" className="mb-3">
               <Form.Label>Cover Letter</Form.Label>
-              <Form.Control as="textarea" rows={4} readOnly name="coverLetter" value={coverLetter} />
+              <Form.Control
+                as="textarea"
+                rows={4}
+                name="coverLetter"
+                value={coverLetter}
+                onChange={handleChange}
+                disabled={isProcessing}
+              />
             </Form.Group>
             <Form.Group controlId="gender" className="mb-3">
               <Form.Label>Gender</Form.Label>
-              <Form.Control readOnly type="text" name="gender" value={gender} />
+              <Form.Control
+                as="select"
+                name="gender"
+                value={gender}
+                onChange={handleChange}
+                disabled={isProcessing}
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </Form.Control>
             </Form.Group>
-            {resume && (
-              <div>
-                <Form.Label>Resume</Form.Label>
-                <a href={resume} download>
-                  Download Resume
-                </a>
-              </div>
-            )}
-            <Button variant="success" onClick={() => navigate(ROUTES.PROFILE_EDIT)}>
-              Edit
+            <Form.Group controlId="resume" className="mb-3">
+              <Form.Label>Resume</Form.Label>
+              <Form.Control
+                type="file"
+                name="resume"
+                onChange={handleResumeUpload}
+                disabled={isProcessing}
+              />
+            </Form.Group>
+            <Button className="me-2" variant="success" type="submit" disabled={isProcessing}>
+              {isProcessing ? 'Updating...' : 'Update'}
+            </Button>
+            <Button variant="light" onClick={() => navigate(ROUTES.PROFILE)} disabled={isProcessing}>
+              Cancel
             </Button>
           </Form>
         </Card.Body>
@@ -73,15 +126,19 @@ const Profile = ({
   );
 };
 
-Profile.propTypes = {
+Edit.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
   coverLetter: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
-  resume: PropTypes.string, // Update the prop type for resume
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isProcessing: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  dismissAlert: PropTypes.func.isRequired,
+  handleResumeUpload: PropTypes.func.isRequired,
 };
 
-export default Profile;
+export default Edit;

@@ -11,7 +11,7 @@ import NotFound from '../../../components/NotFound/Lazy';
 
 class CompanyContainer extends Component {
      return (
-      <body style={bodyStyle}>
+     <body>
         <Routes>
           <Route index element={<Company />} />
           <Route path="students" element={<StudentsContainer />} />

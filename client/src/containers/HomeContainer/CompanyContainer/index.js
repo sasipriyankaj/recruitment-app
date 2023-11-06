@@ -10,19 +10,18 @@ import EditContainer from './ProfileContainer/EditContainer/Lazy';
 import NotFound from '../../../components/NotFound/Lazy';
 
 class CompanyContainer extends Component {
-     return (
-     <body>
-        <Routes>
-          <Route index element={<Company />} />
-          <Route path="students" element={<StudentsContainer />} />
-          <Route path="jobs" element={<JobsContainer />} />
-          <Route path="jobs/new" element={<NewContainer />} />
-          <Route path="profile" element={<ProfileContainer />} />
-          <Route path="profile/edit" element={<EditContainer />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </body>
-    );
+  render() {
+    return (
+      <Routes>
+        <Route index element={<Company />} />
+        <Route path="students" element={<StudentsContainer />} />
+        <Route path="jobs" element={<JobsContainer />} />
+        <Route path="jobs/new" element={<NewContainer />} />
+        <Route path="profile" element={<ProfileContainer />} />
+        <Route path="profile/edit" element={<EditContainer />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+   );
   }
 }
 
